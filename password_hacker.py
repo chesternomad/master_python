@@ -30,9 +30,18 @@ def check_pwd_leak(hash, hash_to_check):
 	
 
 def main(password):
-	count = pwned_api_check(password)
-	if count:
-		print(f'{password} has been exploited {count} times')
-	else:
-		print(f'{password} is safe, feel free to use')
-main('')
+	for i in password:
+		count = pwned_api_check(i)
+		if count:
+			print(f'{i} has been exploited {count} times')
+		else:
+			print(f'{i} is safe, feel free to use')
+
+myset = set()
+for line in open ('pwd.txt','r'):
+	 myset.add(line.strip('\n'))
+	 
+main(myset) 
+
+	
+	
