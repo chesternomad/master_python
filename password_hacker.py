@@ -35,4 +35,4 @@ def main(password):
 		print(f'{password} has been exploited {count} times')
 	else:
 		print(f'{password} is safe, feel free to use')
-main('sucdengate2741')
+main('')
