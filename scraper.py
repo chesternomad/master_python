@@ -21,7 +21,7 @@ import os
 #d1 = date.today().strftime('%d/%m/%Y')
 email_sent = 0
 keyword = 'SUCCESS'
-url = 'url'
+url = 'http://f2sql-uks-p1w01/ReportServer/Pages/ReportViewer.aspx?%2FFuturesII-2%2FHong%20Kong%20Checks%2FScheduler%20Status&rc:showbackbutton=true'
 
 options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")
@@ -35,22 +35,21 @@ driver.maximize_window()
 time.sleep(10)
 
 
-def send_email():
+def send_email(screenshot):
     outlook = win32.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
-    mail.To = 'to_addr'
+    mail.To = 'hkit@sucfin.com'
     mail.Subject = '[Action Required!] F2 process Failed'
-    #mail.Body = 'One of the daily F2 tasks has failed. Please look into it asap'
+    mail.Body = 'One of the daily F2 tasks has failed. Please look into it asap'
     # this field is optional
-    mail.HTMLBody = 'One of the daily F2 tasks has failed. Please look into it asap <br><img src="C:\\temp\\screenshot.png">'
+    #mail.HTMLBody = 'One of the daily F2 tasks has failed. Please look into it asap <br><img src="C:\\temp\\screenshot.png">'
 
     # To attach a file to the email (optional):
-    # attachment  = "Path to the attachment"
-    # mail.Attachments.Add(attachment)
+    #attachment  = "Path to the attachment"
+    mail.Attachments.Add(screenshot)
 
     mail.Send()
     time.sleep(20)
-    os.remove('C:\\temp\\screenshot.png')
 
     return 1
 
@@ -62,8 +61,10 @@ while datetime.datetime.now().hour < 18:
             element = driver.find_element(
                 By.XPATH, f"//*[contains(text(),'{keyword}')]")
             if bool(element):
-                driver.save_screenshot('C:\\temp\\screenshot.png')
-                email_sent = send_email()
+                screenshot = 'C:\\temp\\screenshot.png'
+                driver.save_screenshot(screenshot)
+                email_sent = send_email(screenshot)
+                os.remove(screenshot)
         except NoSuchElementException as err:
             pass
     else:
