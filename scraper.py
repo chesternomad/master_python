@@ -49,6 +49,9 @@ def send_email():
     # mail.Attachments.Add(attachment)
 
     mail.Send()
+    time.sleep(20)
+    os.remove('C:\\temp\\screenshot.png')
+
     return 1
 
 
@@ -61,7 +64,6 @@ while datetime.datetime.now().hour < 18:
             if bool(element):
                 driver.save_screenshot('C:\\temp\\screenshot.png')
                 email_sent = send_email()
-                os.remove('C:\\temp\\screenshot.png')
         except NoSuchElementException as err:
             pass
     else:
