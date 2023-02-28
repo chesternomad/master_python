@@ -17,12 +17,9 @@ from selenium.common.exceptions import NoSuchElementException
 import datetime
 import os
 
-
-#d1 = date.today().strftime('%d/%m/%Y')
 email_sent = 0
-keyword = 'SUCCESS'
-url = 'http://f2sql-uks-p1w01/ReportServer/Pages/ReportViewer.aspx?%2FFuturesII-2%2FHong%20Kong%20Checks%2FScheduler%20Status&rc:showbackbutton=true'
-
+keyword = 'FAILED'
+url = 'url'
 options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")
 options.add_argument("window-size=1980,960")
@@ -38,23 +35,17 @@ time.sleep(10)
 def send_email(screenshot):
     outlook = win32.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
-    mail.To = 'hkit@sucfin.com'
+    mail.To = 'to_addr'
     mail.Subject = '[Action Required!] F2 process Failed'
-    mail.Body = 'One of the daily F2 tasks has failed. Please look into it asap'
-    # this field is optional
-    #mail.HTMLBody = 'One of the daily F2 tasks has failed. Please look into it asap <br><img src="C:\\temp\\screenshot.png">'
-
-    # To attach a file to the email (optional):
-    #attachment  = "Path to the attachment"
-    mail.Attachments.Add(screenshot)
-
+    attachment = mail.Attachments.Add(screenshot)
+    attachment.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "f2_screenshot")
+    mail.HTMLBody = 'One of the daily F2 tasks has failed. Please look into it asap <br><img src="cid:f2_screenshot">'
     mail.Send()
     time.sleep(20)
-
     return 1
 
 
-while datetime.datetime.now().hour < 18:
+while datetime.datetime.now().hour < 13:
     driver.refresh()
     if not email_sent:
         try:
@@ -69,5 +60,5 @@ while datetime.datetime.now().hour < 18:
             pass
     else:
         break
-    time.sleep(180)
+time.sleep(180)
 driver.quit()
