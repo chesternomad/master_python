@@ -26,7 +26,11 @@ def search_value(team, key):
 if __name__ == '__main__':
     for i in url_list:
         head, team = i.split('=')
-        driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+		options.add_argument("--headless=new")
+		options.add_argument("window-size=1980,960")
+		options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(options=options)
         driver.implicitly_wait(5)
         driver.get(i)
         # driver.maximize_window()
