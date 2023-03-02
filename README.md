@@ -1,7 +1,6 @@
-# master_python
-Zero to Master Academy Projects
+# password_hacker.py
+This python helps us check our password against pwned password without passing the whole password.
+This python reads passwords from a file line by line and sends the first 5 characters of sha1 hashed password to pwned api . Pwned api returns all hashed exploited password. Then we check the sha1 hashed password against hashed exploited password. 
 
-First Project by Python
-
-
-testing git
+# scraper.py
+This python scrape a dynamic website with javascript and sends an email notification once we find the "FAILED" on the website.
