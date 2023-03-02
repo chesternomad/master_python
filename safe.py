@@ -9,8 +9,8 @@ from selenium.common.exceptions import NoSuchElementException
 
 key_list = ['accountsTradeable[]', 'commoditiesTradeable[]']
 
-url_list = ['https://app-safe-prod.azurewebsites.net/starGroups/?n=HKDESK',
-            'https://app-safe-prod.azurewebsites.net/starGroups/?n=HKDESK1']
+url_list = ['url1',
+            'url2']
 
 
 def search_value(team, key):
