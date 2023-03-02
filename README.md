@@ -4,3 +4,6 @@ This python reads passwords from a file line by line and sends the first 5 chara
 
 # scraper.py
 This python scrape a dynamic website with javascript and sends an email notification once we find the "FAILED" on the website.
+
+# safe.py
+This python scrapes all text value by name field and write it to a new file
