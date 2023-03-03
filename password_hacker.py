@@ -39,8 +39,8 @@ def main(password):
 
 myset = set()
 for line in open ('pwd.txt','r'):
-	 myset.add(line.strip('\n'))
-	 
+	myset.add(line.strip('\n'))
+	
 main(myset) 
 
 	
