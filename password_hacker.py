@@ -45,4 +45,3 @@ main(myset)
 
 	
 	
-w
