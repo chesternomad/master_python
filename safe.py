@@ -17,6 +17,7 @@ def search_value(team, key):
     element = driver.find_element(By.NAME, key)
 
     with open(f'C:\\temp\\{team}_{key[:-2]}.txt', 'w') as f:
+        #('gbk','ignore') ignore gbk error
         f.write(element.text.encode("gbk", "ignore").decode("gbk", "ignore"))
         f.close()
     time.sleep(30)
