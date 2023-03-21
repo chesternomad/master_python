@@ -13,31 +13,33 @@ def request_api_date(query_char):
 
 
 def pwned_api_check(password):
-	sha1password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
-	head, rest = sha1password[:5], sha1password[5:]
-	response = request_api_date(head)
-	count = check_pwd_leak(response,rest)
-	return count
-	
-def check_pwd_leak(hash, hash_to_check):
-	# print(hash.text.splitlines())
-	for i in hash.text.splitlines():
-		k,v = i.split(':')
-		if k == hash_to_check:
-			return v
-	return 0
+    sha1password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
+    head, rest = sha1password[:5], sha1password[5:]
+    response = request_api_date(head)
+    count = check_pwd_leak(response, rest)
+    return count
 
-	
+
+def check_pwd_leak(hash, hash_to_check):
+    # print(hash.text.splitlines())
+    for i in hash.text.splitlines():
+        k, v = i.split(':')
+        if k == hash_to_check:
+            return v
+    return 0
+
 
 def main(password):
-	for i in password:
-		count = pwned_api_check(i)
-		if count:
-			print(f'{i} has been exploited {count} times')
-		else:
-			print(f'{i} is safe, feel free to use')
+    for i in password:
+        count = pwned_api_check(i)
+        if count:
+            print(f'{i} has been exploited {count} times')
+        else:
+            print(f'{i} is safe, feel free to use')
+
 
 myset = set()
+<<<<<<< Updated upstream
 for line in open ('pwd.txt','r'):
 	myset.add(line.strip('\n'))
 	
@@ -45,3 +47,9 @@ main(myset)
 
 	
 	
+=======
+for line in open('pwd.txt', 'r'):
+    myset.add(line.strip('\n'))
+
+main(myset)
+>>>>>>> Stashed changes

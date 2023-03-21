@@ -24,7 +24,7 @@ options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")
 options.add_argument("window-size=1980,960")
 options.add_argument('--disable-gpu')
-options.add_argument("screenshot")
+# options.add_argument("screenshot")
 driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(5)
 driver.get(url)
@@ -38,8 +38,14 @@ def send_email(screenshot):
     mail.To = 'hkit@sucfin.com'
     mail.Subject = '[Action Required!] F2 process Failed'
     attachment = mail.Attachments.Add(screenshot)
+<<<<<<< Updated upstream
     attachment.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "f2_screenshot")
     mail.HTMLBody = 'The latest running task has failed. Please look into it asap <br><img src="cid:f2_screenshot">'
+=======
+    attachment.PropertyAccessor.SetProperty(
+        "http://schemas.microsoft.com/mapi/proptag/0x3712001F", "f2_screenshot")
+    mail.HTMLBody = 'One of the daily F2 tasks has failed. Please look into it asap <br><img src="cid:f2_screenshot">'
+>>>>>>> Stashed changes
     mail.Send()
     time.sleep(20)
     return 1
@@ -60,5 +66,10 @@ while datetime.datetime.now().hour < 13:
             pass
     else:
         break
+<<<<<<< Updated upstream
     time.sleep(180)
 driver.quit()
+=======
+time.sleep(180)
+driver.quit()
+>>>>>>> Stashed changes
