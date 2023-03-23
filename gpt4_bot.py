@@ -27,7 +27,7 @@ def is_known_username(username):
     '''
     Returns a boolean if the username is known in the user-list.
     '''
-    known_usernames = ['nomad72', 'username2']
+    known_usernames = ['username1', 'username2']
 
     return username in known_usernames
 
