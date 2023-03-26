@@ -9,4 +9,5 @@ This python scrape a dynamic website with javascript and sends an email notifica
 This python scrapes all text value by name field and write it to a new file
 
 # Tg_bot.py
-> Connect TG bot to ChatGPT and deploy it onto AWS Severless Lamda 
+* Response text input by ChatGPT
+* Response location input by Google Map Place API to suggest restaurants within 1km 
