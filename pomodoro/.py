@@ -1,5 +1,4 @@
 from tkinter import *
-from playsound import playsound
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -7,8 +6,8 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 BLUE = "#4390F8"
 FONT_NAME = "Courier"
-WORK_MIN = 1
-SHORT_BREAK_MIN = 1
+WORK_MIN = 20
+SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 count_down_timer = None
@@ -32,14 +31,12 @@ def pause_timer():
     global TIME_LEFT
     if pause_button['text'] == 'Pause':
         window.after_cancel(count_down_timer)
-        pause_button.config(text="Resume")
-        playsound('pause_sound.mp3')
         minute, second = canvas.itemcget(timer_text, 'text').split(':')
         TIME_LEFT = int(minute) * 60 + int(second)
+        pause_button.config(text="Resume")
     elif pause_button['text'] == 'Resume':
-        pause_button.config(text="Pause")
         count_down(TIME_LEFT)
-        playsound('pause_sound.mp3')
+        pause_button.config(text="Pause")
         TIME_LEFT = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -79,8 +76,8 @@ def count_down(count):
         if reps % 2 == 0:
             completed = int(reps/2) * '✅'
             checked_mark.config(text=completed)
-        playsound('timer_sound.mp3')
         call_timer()
+        # call_timer()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
