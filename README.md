@@ -10,4 +10,5 @@ This python scrapes all text value by name field and write it to a new file
 
 # Tg_bot.py
 * Response text input by ChatGPT
-* Response location input by Google Map Place API to suggest restaurants within 1km 
+* Response location input by Google Map Place API to suggest restaurants within 1km
+* Added command "text_to_speech" for Japanese text to audio file by Google API
